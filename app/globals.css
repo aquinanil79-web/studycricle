@@ -1,0 +1,133 @@
+@import "tailwindcss";
+
+/*
+  StudyCircle design system (Tailwind CSS v4 - configured in CSS, no tailwind.config.js).
+  A focused campus workspace: cool white, deep ink-blue, and a vivid periwinkle accent.
+*/
+
+/* Fonts are loaded by next/font in app/layout.tsx and exposed as CSS variables. */
+@theme inline {
+  --font-sans: var(--font-body), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-body), ui-sans-serif, system-ui, sans-serif;
+}
+
+@theme {
+  /* Neutrals */
+  --color-paper: #f6f7fb;
+  --color-surface: #ffffff;
+  --color-ink: #171a2b;
+  --color-muted: #697087;
+  --color-line: #e5e7f0;
+
+  /* Primary: midnight navy */
+  --color-pine-50: #f0f2fa;
+  --color-pine-100: #e0e5f4;
+  --color-pine-200: #c2cbe9;
+  --color-pine-300: #9aa8d3;
+  --color-pine-400: #7182ba;
+  --color-pine-500: #52649d;
+  --color-pine-600: #3f507f;
+  --color-pine-700: #303f68;
+  --color-pine-800: #232f52;
+  --color-pine-900: #1b2441;
+  --color-pine-950: #12182d;
+
+  /* Accent: periwinkle */
+  --color-marigold-50: #f2f1ff;
+  --color-marigold-100: #e8e6ff;
+  --color-marigold-200: #d5d1ff;
+  --color-marigold-300: #b9b3ff;
+  --color-marigold-400: #9990ff;
+  --color-marigold-500: #7b70f5;
+  --color-marigold-600: #6555e3;
+  --color-marigold-700: #5143c4;
+
+  /* Danger: brick red */
+  --color-brick-50: #fdf3f1;
+  --color-brick-100: #fbe2dd;
+  --color-brick-500: #d4483a;
+  --color-brick-600: #b9382b;
+  --color-brick-700: #992c21;
+
+  --shadow-card: 0 1px 2px rgb(27 36 32 / 0.04), 0 10px 28px -14px rgb(27 36 32 / 0.16);
+  --shadow-lift: 0 2px 4px rgb(27 36 32 / 0.05), 0 18px 40px -16px rgb(27 36 32 / 0.26);
+
+  /* Page-load reveal. Stagger with style={{ animationDelay: "80ms" }}. */
+  --animate-rise: rise 0.55s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  @keyframes rise {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+@layer base {
+  /* Tailwind v4 borders default to the text colour; use our hairline colour instead. */
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-line);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    letter-spacing: -0.015em;
+  }
+
+  /* Tailwind v4 no longer sets these. */
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+
+  dialog {
+    margin: auto;
+  }
+
+  ::selection {
+    background-color: var(--color-marigold-200);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    ::before,
+    ::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+/* Small uppercase label used above headings and in cards ("UPCOMING", "CATEGORY"). */
+@utility eyebrow {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+/* Subtle dotted texture for hero and header backgrounds. */
+@utility bg-dots {
+  background-image: radial-gradient(rgb(113 130 186 / 0.18) 1px, transparent 1px);
+  background-size: 18px 18px;
+}
